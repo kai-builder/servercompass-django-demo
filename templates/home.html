@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ServerCompass Demo - Environment Variables</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 800px;
+            width: 100%;
+            padding: 40px;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 2.5rem;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+
+        .env-section {
+            margin-top: 30px;
+        }
+
+        .section-title {
+            color: #667eea;
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #667eea;
+        }
+
+        .env-grid {
+            display: grid;
+            gap: 15px;
+        }
+
+        .env-item {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            padding: 15px;
+            border-radius: 8px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .env-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+        }
+
+        .env-key {
+            font-weight: 600;
+            color: #333;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+
+        .env-value {
+            color: #555;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 1rem;
+            word-break: break-all;
+        }
+
+        .api-links {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .api-link {
+            display: inline-block;
+            margin-right: 15px;
+            margin-bottom: 10px;
+            padding: 10px 20px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: background 0.3s;
+            font-weight: 500;
+        }
+
+        .api-link:hover {
+            background: #764ba2;
+        }
+
+        .footer {
+            margin-top: 30px;
+            text-align: center;
+            color: #999;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>ServerCompass Demo</h1>
+        <p class="subtitle">Django Environment Variables Display</p>
+
+        <div class="env-section">
+            <h2 class="section-title">Public Environment Variables</h2>
+            <div class="env-grid">
+                {% for key, value in env_vars.items %}
+                <div class="env-item">
+                    <div class="env-key">{{ key }}</div>
+                    <div class="env-value">{{ value }}</div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="api-links">
+            <h2 class="section-title">API Endpoints</h2>
+            <a href="/api/env/" class="api-link">GET /api/env/</a>
+            <a href="/api/health/" class="api-link">GET /api/health/</a>
+        </div>
+
+        <div class="footer">
+            <p>Only NEXT_PUBLIC_* variables are exposed for security</p>
+        </div>
+    </div>
+</body>
+</html>
